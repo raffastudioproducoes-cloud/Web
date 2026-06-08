@@ -1,46 +1,74 @@
 import { useState } from 'react';
 import { X, Check, CreditCard, QrCode, Smartphone, FileText } from 'lucide-react';
+import { trpc } from '@/lib/trpc';
+import { toast } from 'sonner';
 import '../styles/paywall.css';
 
 interface PaywallModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onUpgrade?: () => void;
+  onUpgradeSuccess?: () => void;
 }
 
-type PaymentMethod = 'cc' | 'pix' | 'google' | 'boleto';
+type PaymentMethod = 'cartao' | 'pix' | 'google_pay' | 'boleto';
 
-export default function PaywallModal({ isOpen, onClose, onUpgrade }: PaywallModalProps) {
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cc');
+export default function PaywallModal({ isOpen, onClose, onUpgradeSuccess }: PaywallModalProps) {
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cartao');
   const [isProcessing, setIsProcessing] = useState(false);
+
+  // Query para obter status de subscrição
+  const statusQuery = trpc.subscricoes.getStatus.useQuery();
+  const beneficiosQuery = trpc.subscricoes.getBeneficios.useQuery();
+
+  // Mutation para fazer upgrade
+  const upgradeMutation = trpc.subscricoes.upgrade.useMutation({
+    onSuccess: (data) => {
+      toast.success(data.message);
+      setIsProcessing(false);
+      
+      // Refetch do status
+      statusQuery.refetch();
+      
+      // Chamar callback de sucesso
+      if (onUpgradeSuccess) {
+        onUpgradeSuccess();
+      }
+      
+      // Fechar modal após 1 segundo
+      setTimeout(() => {
+        onClose();
+      }, 1000);
+    },
+    onError: (error) => {
+      toast.error(error.message || 'Erro ao fazer upgrade');
+      setIsProcessing(false);
+    },
+  });
 
   if (!isOpen) return null;
 
   const handlePayment = async () => {
     setIsProcessing(true);
-    // Simular processamento de pagamento
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsProcessing(false);
-
-    // Chamar callback de upgrade
-    if (onUpgrade) {
-      onUpgrade();
-    }
-    onClose();
+    
+    // Fazer upgrade com o método de pagamento selecionado
+    upgradeMutation.mutate({
+      metodo: paymentMethod,
+      valor: 9.90,
+    });
   };
 
-  const benefits = [
-    { icon: '∞', text: 'Caixinhas ilimitadas' },
-    { icon: '📈', text: 'Rendimento simulado' },
-    { icon: '🔒', text: 'Sem anúncios' },
-    { icon: '⚡', text: 'Prioridade no suporte' },
-    { icon: '📊', text: 'Analytics avançados' },
-    { icon: '🎯', text: 'Metas personalizadas' },
+  const benefits = beneficiosQuery.data?.premium || [
+    '∞ Caixinhas ilimitadas',
+    '📈 Rendimento simulado',
+    '🔒 Sem anúncios',
+    '⚡ Prioridade no suporte',
+    '📊 Analytics avançados',
+    '🎯 Metas personalizadas',
   ];
 
   const paymentMethods = [
     {
-      id: 'cc' as PaymentMethod,
+      id: 'cartao' as PaymentMethod,
       name: 'Cartão de Crédito',
       icon: CreditCard,
       description: 'Visa, Mastercard, Elo',
@@ -52,7 +80,7 @@ export default function PaywallModal({ isOpen, onClose, onUpgrade }: PaywallModa
       description: 'Transferência instantânea',
     },
     {
-      id: 'google' as PaymentMethod,
+      id: 'google_pay' as PaymentMethod,
       name: 'Google Pay',
       icon: Smartphone,
       description: 'Pagamento rápido',
@@ -91,10 +119,10 @@ export default function PaywallModal({ isOpen, onClose, onUpgrade }: PaywallModa
 
           {/* Benefícios */}
           <div className="paywall-benefits">
-            {benefits.map((benefit, index) => (
+            {(Array.isArray(benefits) ? benefits : []).map((benefit, index) => (
               <div key={index} className="benefit-item">
                 <Check size={20} />
-                <span>{benefit.text}</span>
+                <span>{typeof benefit === 'string' ? benefit : benefit}</span>
               </div>
             ))}
           </div>
@@ -111,6 +139,7 @@ export default function PaywallModal({ isOpen, onClose, onUpgrade }: PaywallModa
                     key={method.id}
                     className={`method-card ${paymentMethod === method.id ? 'active' : ''}`}
                     onClick={() => setPaymentMethod(method.id)}
+                    disabled={isProcessing}
                   >
                     <Icon size={28} />
                     <p className="method-name">{method.name}</p>
@@ -122,7 +151,7 @@ export default function PaywallModal({ isOpen, onClose, onUpgrade }: PaywallModa
           </div>
 
           {/* Formulário de Pagamento */}
-          {paymentMethod === 'cc' && (
+          {paymentMethod === 'cartao' && (
             <div className="payment-form">
               <div className="form-group">
                 <label>Número do Cartão</label>
@@ -172,7 +201,7 @@ export default function PaywallModal({ isOpen, onClose, onUpgrade }: PaywallModa
             </div>
           )}
 
-          {paymentMethod === 'google' && (
+          {paymentMethod === 'google_pay' && (
             <div className="payment-info">
               <p>Você será redirecionado para Google Pay</p>
             </div>
@@ -188,9 +217,9 @@ export default function PaywallModal({ isOpen, onClose, onUpgrade }: PaywallModa
           <button
             className="paywall-pay-button"
             onClick={handlePayment}
-            disabled={isProcessing}
+            disabled={isProcessing || upgradeMutation.isPending}
           >
-            {isProcessing ? (
+            {isProcessing || upgradeMutation.isPending ? (
               <>
                 <span className="spinner"></span>
                 Processando...

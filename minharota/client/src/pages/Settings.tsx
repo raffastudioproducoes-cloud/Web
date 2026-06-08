@@ -18,10 +18,9 @@ export default function Settings() {
   const user = userQuery.data;
   const isPro = user?.isPro || false;
 
-  const handleUpgrade = () => {
-    // Simular upgrade
-    console.log('Upgrade realizado!');
-    // Em produção, você atualizaria o banco de dados aqui
+  const handleUpgradeSuccess = () => {
+    // Refetch do usuário para atualizar isPro
+    userQuery.refetch();
   };
 
   return (
@@ -196,7 +195,7 @@ export default function Settings() {
       <PaywallModal
         isOpen={showPaywall}
         onClose={() => setShowPaywall(false)}
-        onUpgrade={handleUpgrade}
+        onUpgradeSuccess={handleUpgradeSuccess}
       />
     </MainLayout>
   );
