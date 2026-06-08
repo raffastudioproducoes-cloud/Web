@@ -1,0 +1,189 @@
+================================================================================
+INSTRUÇÕES: COPIE TUDO ABAIXO E COLE NO RENDER
+================================================================================
+
+1. Acesse: https://render.com
+2. Selecione seu Web Service "minharota"
+3. Vá para: Environment (no menu superior)
+4. Clique em: "Edit Environment Variables"
+5. Cole TUDO abaixo na caixa de texto
+6. Substitua os valores <entre_colchetes> pelos valores reais do seu Manus
+7. Clique em: Save
+8. Clique em: Redeploy latest commit
+
+================================================================================
+COPIE E COLE TUDO ABAIXO:
+================================================================================
+
+NODE_ENV=production
+DATABASE_URL=<seu_database_url_aqui>
+JWT_SECRET=<sua_chave_secreta_jwt_aqui>
+VITE_APP_ID=<seu_vite_app_id_aqui>
+OAUTH_SERVER_URL=https://api.manus.im
+VITE_OAUTH_PORTAL_URL=<seu_vite_oauth_portal_url_aqui>
+OWNER_OPEN_ID=<seu_owner_open_id_aqui>
+OWNER_NAME=<seu_nome_aqui>
+BUILT_IN_FORGE_API_URL=<seu_built_in_forge_api_url_aqui>
+BUILT_IN_FORGE_API_KEY=<sua_built_in_forge_api_key_aqui>
+VITE_FRONTEND_FORGE_API_URL=<seu_vite_frontend_forge_api_url_aqui>
+VITE_FRONTEND_FORGE_API_KEY=<sua_vite_frontend_forge_api_key_aqui>
+VITE_ANALYTICS_ENDPOINT=<seu_vite_analytics_endpoint_aqui>
+VITE_ANALYTICS_WEBSITE_ID=<seu_vite_analytics_website_id_aqui>
+
+================================================================================
+ONDE ENCONTRAR CADA VALOR:
+================================================================================
+
+NODE_ENV
+  Valor fixo: production
+  Não mude!
+
+DATABASE_URL
+  Onde: Seu provedor de banco de dados
+  Formato: mysql://user:password@host:3306/database
+  Exemplo: mysql://minharota_user:senha123@db.example.com:3306/minharota_db
+
+JWT_SECRET
+  Onde: Você cria (deve ser forte)
+  Como gerar: openssl rand -base64 32
+  Mínimo: 32 caracteres
+  Exemplo: sk-proj-abc123xyz789def456ghi789jkl012mno345pqr
+
+VITE_APP_ID
+  Onde: Manus Dashboard → Settings → Integrations → App ID
+  Formato: UUID
+  Exemplo: 550e8400-e29b-41d4-a716-446655440000
+
+OAUTH_SERVER_URL
+  Valor fixo: https://api.manus.im
+  Não mude!
+
+VITE_OAUTH_PORTAL_URL
+  Onde: Manus Dashboard → Settings → OAuth → Portal URL
+  Exemplo: https://oauth.manus.im
+
+OWNER_OPEN_ID
+  Onde: Manus Dashboard → Account Settings → Open ID
+  Formato: String alfanumérica
+  Exemplo: user-123456789
+
+OWNER_NAME
+  Seu nome completo
+  Exemplo: João Silva
+
+BUILT_IN_FORGE_API_URL
+  Onde: Manus Dashboard → Settings → API Keys → Forge API URL
+  Exemplo: https://api.manus.im/forge
+
+BUILT_IN_FORGE_API_KEY
+  Onde: Manus Dashboard → Settings → API Keys → Backend API Key
+  Formato: String longa (token)
+  Exemplo: sk-forge-abc123xyz789def456ghi789jkl012
+
+VITE_FRONTEND_FORGE_API_URL
+  Onde: Manus Dashboard → Settings → API Keys → Frontend Forge API URL
+  Exemplo: https://api.manus.im/forge
+
+VITE_FRONTEND_FORGE_API_KEY
+  Onde: Manus Dashboard → Settings → API Keys → Frontend API Key
+  Formato: String longa (token)
+  Exemplo: sk-frontend-abc123xyz789def456ghi
+
+VITE_ANALYTICS_ENDPOINT (OPCIONAL)
+  Onde: Seu provedor de analytics
+  Exemplos: https://analytics.umami.is
+  Se não tiver: deixe em branco ou remova a linha
+
+VITE_ANALYTICS_WEBSITE_ID (OPCIONAL)
+  Onde: Seu painel de analytics
+  Se não tiver: deixe em branco ou remova a linha
+
+================================================================================
+PASSO A PASSO NO RENDER:
+================================================================================
+
+1. ABRIR CONFIGURAÇÕES
+   - Acesse: https://render.com
+   - Clique no seu Web Service (MinhaRota)
+   - Vá para: Environment (no menu superior)
+
+2. EDITAR VARIÁVEIS
+   - Clique em: "Edit Environment Variables"
+   - Uma caixa de texto vai aparecer
+
+3. COLAR VARIÁVEIS
+   - Copie TUDO acima (de NODE_ENV até VITE_ANALYTICS_WEBSITE_ID)
+   - Cole na caixa de texto
+
+4. SUBSTITUIR VALORES
+   - Procure por cada <entre_colchetes>
+   - Substitua pelo valor real do seu Manus
+   - Exemplo: <seu_database_url_aqui> → mysql://user:pass@host/db
+
+5. SALVAR
+   - Clique em: Save
+   - Aguarde a confirmação
+
+6. REDEPLOY
+   - Vá para: Deploy (no menu superior)
+   - Clique em: Redeploy latest commit
+   - Aguarde 3-5 minutos
+
+7. VERIFICAR
+   - Quando terminar, acesse a URL pública
+   - Exemplo: https://minharota.onrender.com
+   - Teste o login e as funcionalidades
+
+================================================================================
+CHECKLIST ANTES DE SALVAR:
+================================================================================
+
+[ ] NODE_ENV = production
+[ ] DATABASE_URL preenchida (mysql://...)
+[ ] JWT_SECRET forte (mín. 32 caracteres)
+[ ] VITE_APP_ID copiada do Manus
+[ ] OAUTH_SERVER_URL = https://api.manus.im
+[ ] VITE_OAUTH_PORTAL_URL preenchida
+[ ] OWNER_OPEN_ID copiada do Manus
+[ ] OWNER_NAME preenchida
+[ ] BUILT_IN_FORGE_API_URL preenchida
+[ ] BUILT_IN_FORGE_API_KEY preenchida
+[ ] VITE_FRONTEND_FORGE_API_URL preenchida
+[ ] VITE_FRONTEND_FORGE_API_KEY preenchida
+[ ] Nenhuma variável com valor <entre_colchetes>
+[ ] Clicou em: Save
+[ ] Clicou em: Redeploy latest commit
+
+================================================================================
+TROUBLESHOOTING:
+================================================================================
+
+ERRO: "Build failed"
+  → Verifique se todas as variáveis obrigatórias estão preenchidas
+  → Veja os logs no Render para mais detalhes
+
+ERRO: "App won't start"
+  → Verifique DATABASE_URL
+  → Confirme JWT_SECRET está preenchida
+  → Veja os logs de erro
+
+ERRO: "OAuth not working"
+  → Verifique VITE_APP_ID
+  → Confirme OAUTH_SERVER_URL = https://api.manus.im
+  → Verifique VITE_OAUTH_PORTAL_URL
+
+ERRO: "Database connection failed"
+  → Verifique DATABASE_URL está correta
+  → Confirme que o banco está acessível
+  → Teste a conexão localmente
+
+================================================================================
+PRONTO!
+================================================================================
+
+Após salvar e fazer redeploy, seu MinhaRota estará online em:
+https://minharota.onrender.com
+
+Parabéns! 🎉
+
+================================================================================
