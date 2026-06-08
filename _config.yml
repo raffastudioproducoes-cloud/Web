@@ -1,0 +1,155 @@
+# Jekyll Configuration for GitHub Pages
+# ====================================
+
+# Site Settings
+title: Raffa Studio Produções - Web Projects
+description: Soluções web inovadoras, elegantes e profissionais
+url: https://raffastudioproducoes-cloud.github.io/Web
+baseurl: /Web
+lang: pt-BR
+
+# Build Settings
+markdown: kramdown
+theme: jekyll-default
+
+# Exclude files and folders from processing
+# ==========================================
+# O Jekyll irá IGNORAR completamente estes arquivos/pastas durante o build
+# Isso evita erros de sintaxe Liquid e acelera o processo de compilação
+exclude:
+  # Node.js e dependências de desenvolvimento
+  - node_modules
+  - package.json
+  - package-lock.yaml
+  - pnpm-lock.yaml
+  - .npmrc
+  - .pnpmfile.cjs
+  
+  # Ferramentas de build e configuração
+  - webpack.config.js
+  - vite.config.ts
+  - tsconfig.json
+  - drizzle.config.ts
+  - vitest.config.ts
+  - .prettierrc
+  - .prettierignore
+  - .eslintrc.json
+  - .editorconfig
+  
+  # Controle de versão
+  - .git
+  - .gitignore
+  - .gitattributes
+  
+  # IDE e editores
+  - .vscode
+  - .idea
+  - .DS_Store
+  - *.swp
+  - *.swo
+  - *~
+  
+  # Documentação de desenvolvimento
+  - CONTRIBUTING.md
+  - LICENSE
+  - GITHUB_PAGES.md
+  - todo.md
+  
+  # Pastas de desenvolvimento específicas
+  - minharota/client/src
+  - minharota/server
+  - minharota/drizzle
+  - minharota/shared
+  - minharota/patches
+  - minharota/references
+  - minharota/.manus-logs
+  - minharota/.git
+  
+  # Arquivos de configuração do Manus
+  - .project-config.json
+  - template.json
+  - .env.local
+  - .env.*.local
+
+# Include files and folders
+# ==========================
+# O Jekyll irá INCLUIR explicitamente estes arquivos/pastas
+# Útil para sobrescrever exclusões anteriores se necessário
+include:
+  - .htaccess
+  - _redirects
+
+# Keep files
+# ==========
+# Preservar estes arquivos durante o build (não deletar)
+keep_files:
+  - minharota/node_modules
+  - minharota/dist
+
+# Plugins
+# =======
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# SEO and Social
+# ==============
+author:
+  name: Raffa Studio Produções
+  email: contato@raffastudio.com
+  twitter: raffastudio
+  github: raffastudioproducoes-cloud
+
+# Collections (optional)
+# ======================
+collections_dir: .
+collections:
+  projects:
+    output: false
+    permalink: /:collection/:name
+
+# Defaults
+# ========
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+      permalink: /:basename/
+
+# Output Settings
+# ===============
+permalink: /:categories/:year/:month/:day/:title/
+paginate: 10
+paginate_path: /page:num/
+
+# Sass/SCSS
+# =========
+sass:
+  style: compressed
+  load_paths:
+    - _sass
+
+# Markdown Processing
+# ===================
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+# Liquid Settings
+# ===============
+liquid:
+  error_mode: strict
+  strict_filters: true
+
+# GitHub Pages specific
+# =====================
+github: [metadata]
