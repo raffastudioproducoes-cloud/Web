@@ -1,0 +1,15 @@
+Key,Value,Type,Required,Description
+NODE_ENV,production,String,Yes,Environment mode - must be production
+DATABASE_URL,<seu_database_url_aqui>,String,Yes,Database connection URL (mysql://user:pass@host:port/db)
+JWT_SECRET,<sua_chave_secreta_jwt_aqui>,String,Yes,Secret key for JWT tokens (min 32 chars)
+VITE_APP_ID,<seu_vite_app_id_aqui>,String,Yes,Application ID from Manus Dashboard
+OAUTH_SERVER_URL,https://api.manus.im,String,Yes,OAuth server URL (fixed value)
+VITE_OAUTH_PORTAL_URL,<seu_vite_oauth_portal_url_aqui>,String,Yes,OAuth portal URL from Manus
+OWNER_OPEN_ID,<seu_owner_open_id_aqui>,String,Yes,Owner unique ID from Manus Account
+OWNER_NAME,<seu_nome_aqui>,String,Yes,Owner full name
+BUILT_IN_FORGE_API_URL,<seu_built_in_forge_api_url_aqui>,String,Yes,Forge API URL for backend
+BUILT_IN_FORGE_API_KEY,<sua_built_in_forge_api_key_aqui>,String,Yes,Forge API key for backend
+VITE_FRONTEND_FORGE_API_URL,<seu_vite_frontend_forge_api_url_aqui>,String,Yes,Forge API URL for frontend
+VITE_FRONTEND_FORGE_API_KEY,<sua_vite_frontend_forge_api_key_aqui>,String,Yes,Forge API key for frontend
+VITE_ANALYTICS_ENDPOINT,<seu_vite_analytics_endpoint_aqui>,String,No,Analytics endpoint (optional)
+VITE_ANALYTICS_WEBSITE_ID,<seu_vite_analytics_website_id_aqui>,String,No,Analytics website ID (optional)

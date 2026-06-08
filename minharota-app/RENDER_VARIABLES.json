@@ -1,0 +1,125 @@
+{
+  "variables": [
+    {
+      "key": "NODE_ENV",
+      "value": "production",
+      "type": "String",
+      "required": true,
+      "description": "Environment mode - must be production"
+    },
+    {
+      "key": "DATABASE_URL",
+      "value": "<seu_database_url_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "Database connection URL (mysql://user:pass@host:port/db)",
+      "example": "mysql://minharota_user:senha123@db.example.com:3306/minharota_db"
+    },
+    {
+      "key": "JWT_SECRET",
+      "value": "<sua_chave_secreta_jwt_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "Secret key for JWT tokens (minimum 32 characters)",
+      "example": "sk-proj-abc123xyz789def456ghi789jkl012mno345pqr"
+    },
+    {
+      "key": "VITE_APP_ID",
+      "value": "<seu_vite_app_id_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "Application ID from Manus Dashboard",
+      "source": "Manus → Settings → Integrations → App ID"
+    },
+    {
+      "key": "OAUTH_SERVER_URL",
+      "value": "https://api.manus.im",
+      "type": "String",
+      "required": true,
+      "description": "OAuth server URL (fixed value - do not change)"
+    },
+    {
+      "key": "VITE_OAUTH_PORTAL_URL",
+      "value": "<seu_vite_oauth_portal_url_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "OAuth portal URL from Manus",
+      "source": "Manus → Settings → OAuth → Portal URL"
+    },
+    {
+      "key": "OWNER_OPEN_ID",
+      "value": "<seu_owner_open_id_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "Owner unique ID from Manus Account",
+      "source": "Manus → Account Settings → Open ID"
+    },
+    {
+      "key": "OWNER_NAME",
+      "value": "<seu_nome_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "Owner full name",
+      "example": "João Silva"
+    },
+    {
+      "key": "BUILT_IN_FORGE_API_URL",
+      "value": "<seu_built_in_forge_api_url_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "Forge API URL for backend",
+      "source": "Manus → Settings → API Keys → Forge API URL"
+    },
+    {
+      "key": "BUILT_IN_FORGE_API_KEY",
+      "value": "<sua_built_in_forge_api_key_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "Forge API key for backend",
+      "source": "Manus → Settings → API Keys → Backend API Key"
+    },
+    {
+      "key": "VITE_FRONTEND_FORGE_API_URL",
+      "value": "<seu_vite_frontend_forge_api_url_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "Forge API URL for frontend",
+      "source": "Manus → Settings → API Keys → Frontend Forge API URL"
+    },
+    {
+      "key": "VITE_FRONTEND_FORGE_API_KEY",
+      "value": "<sua_vite_frontend_forge_api_key_aqui>",
+      "type": "String",
+      "required": true,
+      "description": "Forge API key for frontend",
+      "source": "Manus → Settings → API Keys → Frontend API Key"
+    },
+    {
+      "key": "VITE_ANALYTICS_ENDPOINT",
+      "value": "<seu_vite_analytics_endpoint_aqui>",
+      "type": "String",
+      "required": false,
+      "description": "Analytics endpoint (optional)",
+      "example": "https://analytics.umami.is"
+    },
+    {
+      "key": "VITE_ANALYTICS_WEBSITE_ID",
+      "value": "<seu_vite_analytics_website_id_aqui>",
+      "type": "String",
+      "required": false,
+      "description": "Analytics website ID (optional)"
+    }
+  ],
+  "instructions": {
+    "step1": "Copy all KEY=VALUE pairs from this file",
+    "step2": "Go to Render → Web Service → Environment",
+    "step3": "Click 'Edit Environment Variables'",
+    "step4": "Paste all variables",
+    "step5": "Replace <entre_colchetes> with real values",
+    "step6": "Click Save",
+    "step7": "Redeploy the application"
+  },
+  "required_count": 12,
+  "optional_count": 2,
+  "total_count": 14
+}
