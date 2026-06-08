@@ -1,0 +1,91 @@
+{
+  "name": "MinhaRota - Sistema Financeiro para Motoristas",
+  "short_name": "MinhaRota",
+  "description": "Aplicativo elegante e sofisticado para motoristas de aplicativo gerenciarem seus ganhos, turnos e finanças com analytics avançadas",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#10b981",
+  "background_color": "#0f172a",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%2310b981' width='192' height='192'/><circle cx='96' cy='96' r='60' fill='%23ffffff' opacity='0.2'/><path d='M96 50 L110 80 L142 80 L118 100 L128 130 L96 110 L64 130 L74 100 L50 80 L82 80 Z' fill='%23ffffff'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%2310b981' width='512' height='512'/><circle cx='256' cy='256' r='160' fill='%23ffffff' opacity='0.2'/><path d='M256 130 L290 210 L375 210 L310 265 L340 345 L256 290 L172 345 L202 265 L137 210 L222 210 Z' fill='%23ffffff'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "productivity"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%230f172a' width='540' height='720'/><rect fill='%2310b981' x='20' y='20' width='500' height='200' rx='10'/><text x='270' y='120' font-size='40' fill='white' text-anchor='middle' font-weight='bold'>MinhaRota</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Iniciar Turno",
+      "short_name": "Turno",
+      "description": "Inicie rapidamente um novo turno de trabalho",
+      "url": "/dashboard?action=turno",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%2310b981' width='96' height='96'/><circle cx='48' cy='48' r='30' fill='%23ffffff'/><path d='M48 35 v26 M35 48 h26' stroke='%2310b981' stroke-width='3' stroke-linecap='round'/></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Meus Turnos",
+      "short_name": "Turnos",
+      "description": "Veja o histórico de seus turnos",
+      "url": "/turnos",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%233b82f6' width='96' height='96'/><rect x='20' y='20' width='56' height='56' fill='none' stroke='%23ffffff' stroke-width='3' rx='4'/><line x1='30' y1='35' x2='66' y2='35' stroke='%23ffffff' stroke-width='2'/><line x1='30' y1='48' x2='66' y2='48' stroke='%23ffffff' stroke-width='2'/><line x1='30' y1='61' x2='66' y2='61' stroke='%23ffffff' stroke-width='2'/></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Caixinhas",
+      "short_name": "Caixinhas",
+      "description": "Gerencie suas caixinhas financeiras",
+      "url": "/caixinhas",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%23f59e0b' width='96' height='96'/><rect x='20' y='25' width='56' height='46' fill='none' stroke='%23ffffff' stroke-width='3' rx='4'/><line x1='48' y1='25' x2='48' y2='71' stroke='%23ffffff' stroke-width='2'/><circle cx='48' cy='48' r='8' fill='%23ffffff'/></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "media",
+          "accept": ["image/*"]
+        }
+      ]
+    }
+  }
+}

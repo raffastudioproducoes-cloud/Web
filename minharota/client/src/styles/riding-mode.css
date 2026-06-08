@@ -1,0 +1,223 @@
+.riding-mode-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: ridingFadeIn 0.3s ease-out;
+}
+
+@keyframes ridingFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.riding-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.riding-close-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.riding-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Display Gigante de Ganho */
+.riding-ganho-display {
+  text-align: center;
+  animation: ridingDisplayScale 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes ridingDisplayScale {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.riding-label {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.riding-value {
+  margin: 1rem 0 0 0;
+  font-size: 4.5rem;
+  font-weight: 800;
+  color: #10b981;
+  line-height: 1;
+  text-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Seção de Meta */
+.riding-meta-section {
+  width: 100%;
+  animation: ridingMetaSlideUp 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.1s backwards;
+}
+
+@keyframes ridingMetaSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.riding-meta-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.riding-meta-label {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.riding-meta-value {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.riding-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 0.75rem;
+}
+
+.riding-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.riding-progress-text {
+  margin: 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+/* Botão FAB Gigante */
+.riding-fab-large {
+  width: 100%;
+  max-width: 300px;
+  height: 80px;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 12px 40px rgba(16, 185, 129, 0.3);
+  animation: ridingFabBounce 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.2s backwards;
+}
+
+@keyframes ridingFabBounce {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.riding-fab-large:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 50px rgba(16, 185, 129, 0.4);
+}
+
+.riding-fab-large:active {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .riding-container {
+    gap: 2rem;
+  }
+
+  .riding-value {
+    font-size: 3.5rem;
+  }
+
+  .riding-fab-large {
+    height: 70px;
+    font-size: 1.1rem;
+  }
+
+  .riding-close-button {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .riding-value {
+    font-size: 2.75rem;
+  }
+
+  .riding-fab-large {
+    height: 60px;
+    font-size: 1rem;
+  }
+}

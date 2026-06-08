@@ -1,0 +1,226 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, rgba(31, 41, 55, 0.95) 0%, rgba(17, 24, 39, 0.98) 100%);
+  border-top: 1px solid #374151;
+  backdrop-filter: blur(10px);
+  z-index: 40;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.bottom-nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+  gap: 0.5rem;
+}
+
+/* Menu Button (Hamburger) */
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 0.375rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.menu-button span {
+  width: 20px;
+  height: 2px;
+  background-color: #d1d5db;
+  border-radius: 1px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu-button:hover span {
+  background-color: #10b981;
+}
+
+.menu-button.open span:first-child {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.menu-button.open span:last-child {
+  transform: rotate(-45deg) translateY(-10px);
+}
+
+/* Navigation Items Container */
+.nav-items {
+  display: flex;
+  gap: 0;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.nav-items:last-of-type {
+  justify-content: flex-end;
+}
+
+/* Navigation Item */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 100%;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  color: #10b981;
+}
+
+.nav-item.active {
+  color: #10b981;
+}
+
+.nav-item svg {
+  transition: transform 0.2s ease;
+}
+
+.nav-item:active svg {
+  transform: scale(0.9);
+}
+
+.nav-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* FAB Button - Central Elevado */
+.fab-button {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+  transform: translateY(-30px);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.fab-button:hover {
+  transform: translateY(-35px);
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.5);
+}
+
+.fab-button:active {
+  transform: translateY(-28px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.fab-button svg {
+  transition: transform 0.2s ease;
+}
+
+.fab-button:active svg {
+  transform: scale(0.9);
+}
+
+/* Haptic feedback simulation */
+@media (hover: none) {
+  .fab-button {
+    transform: translateY(-28px);
+  }
+
+  .fab-button:active {
+    transform: scale(0.95) translateY(-28px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .bottom-nav {
+    height: 72px;
+  }
+
+  .bottom-nav-container {
+    padding: 0 0.5rem;
+    gap: 0.25rem;
+  }
+
+  .menu-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-item {
+    width: 45px;
+    font-size: 0.6rem;
+  }
+
+  .fab-button {
+    width: 56px;
+    height: 56px;
+    transform: translateY(-28px);
+  }
+
+  .fab-button:hover {
+    transform: translateY(-32px);
+  }
+
+  .nav-label {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .bottom-nav {
+    height: 64px;
+  }
+
+  .bottom-nav-container {
+    padding: 0 0.25rem;
+  }
+
+  .menu-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-item {
+    width: 40px;
+  }
+
+  .fab-button {
+    width: 52px;
+    height: 52px;
+    transform: translateY(-26px);
+  }
+
+  .fab-button:hover {
+    transform: translateY(-30px);
+  }
+}

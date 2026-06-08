@@ -1,0 +1,64 @@
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 100px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Scrollbar customizado */
+.main-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 3px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Suavizar scroll em dispositivos móveis */
+@media (max-width: 640px) {
+  .main-content {
+    padding-bottom: 90px;
+  }
+}
+
+/* Modo Riding - Ocultar navegação */
+.main-layout.riding-mode .bottom-nav {
+  display: none;
+}
+
+.main-layout.riding-mode .main-content {
+  padding-bottom: 0;
+}
+
+/* Animação de entrada */
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.main-content > * {
+  animation: contentFadeIn 0.3s ease-out;
+}
